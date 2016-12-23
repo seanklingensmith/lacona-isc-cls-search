@@ -17,7 +17,7 @@ const ISCClass = {
 
     return (
       <placeholder argument='classname'>
-        <list limit={8} items={classlist} />
+        <list limit={8} items={classlist} strategy='fuzzy' />
       </placeholder>
     )
   }
