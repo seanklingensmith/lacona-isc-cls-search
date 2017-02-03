@@ -2,8 +2,7 @@
 
 import { createElement } from 'elliptical'
 import { Command } from 'lacona-phrases'
-import { runApplescript } from 'lacona-api'
-import { openURL } from 'lacona-api'
+import { runApplescript, openURL } from 'lacona-api'
 
 import _ from 'lodash'
 import classes from './classes'
@@ -11,13 +10,14 @@ import classes from './classes'
 const ISCClass = {
   describe() {
 
-    let classlist = _.map(classes, (value) => {
-      return (<literal text={value} value={encodeURIComponent(value)}/>)
-    })
+    let classlist = _.map(classes, (value) => ({
+      text: value,
+      value: encodeURIComponent(value)
+    }))
 
     return (
       <placeholder argument='classname'>
-        <choice limit={8}>{classlist}</choice>
+        <list limit={8} items={classlist} strategy='fuzzy' />
       </placeholder>
     )
   }
